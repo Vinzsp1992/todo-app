@@ -15,7 +15,7 @@ interface Task {
     completed: boolean;
   }
 
-const Todo: React.FC<Task> = () =>{
+const Todo = () =>{
     const [task, setTask] = useState<Task[]>([]);
     const [toggleTheme , setToggleTheme] = useState<boolean>(true);
     const [newTask, setNewTask] = useState<string>("");
@@ -35,15 +35,13 @@ const Todo: React.FC<Task> = () =>{
                 { id: Math.random().toString(), description: newTask, completed: false },
                 
             ]);
-           
             setNewTask("");
-            
         }
     };
     const deleteTask = (index: number) => {
         const updateTask = activeTasks.filter((_, i) => i !== index);
-        
         setActiveTasks(updateTask);
+        setTask(updateTask);
     
     }
    
@@ -80,7 +78,6 @@ const Todo: React.FC<Task> = () =>{
         }
         
     };
-    
         const toggle = () =>{
             setToggleTheme(!toggleTheme);
         }
